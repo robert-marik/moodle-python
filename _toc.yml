@@ -1,0 +1,21 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Python
+    numbered: true
+    chapters:
+    - file: text/01_01.md
+    - file: text/01_02.md
+    - file: text/01_03.md
+    - file: text/01_04.md
+    - file: text/01_05.md
+    - file: text/03_01.md
+    - file: text/03_01a.md
+    - file: text/03_01b.md
+    - file: text/03_02.md
+    - file: text/03_02a.md
+    - file: text/03_03.md
+    - file: text/03_04.md
