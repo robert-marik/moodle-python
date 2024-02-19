@@ -19,3 +19,9 @@ parts:
     - file: text/03_02a.md
     - file: text/03_03.md
     - file: text/03_04.md
+    - file: text/03_05.md
+    - file: text/03_05a.md
+    - file: text/03_06.md
+    - file: text/03_06a.md
+    - file: text/03_07.md
+    - file: text/03_08.md
