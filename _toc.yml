@@ -25,3 +25,10 @@ parts:
     - file: text/03_06a.md
     - file: text/03_07.md
     - file: text/03_08.md
+    - file: text/04_00.md
+    - file: text/04_01.md
+    - file: text/04_02.md
+    - file: text/04_02a.md
+    - file: text/04_03.md
+    - file: text/04_04.md
+    - file: text/04_04a.md
