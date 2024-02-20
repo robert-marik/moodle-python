@@ -73,7 +73,7 @@ html_theme_options = {
     #"collapse_navigation": True,
     "navigation_with_keys": False,
 }
-html_title = 'Matematika'
+html_title = 'Python'
 html_sidebars = {
     "**": [
         "navbar-logo.html",

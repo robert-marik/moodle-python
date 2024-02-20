@@ -35,3 +35,7 @@ parts:
     - file: text/07_01.md
     - file: text/07_02.md
     - file: text/07_03.md
+    - file: text/05_01.md
+    - file: text/05_02.md
+    - file: text/05_03.md
+    - file: text/05_04.md
