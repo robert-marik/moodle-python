@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>23. Lokální a globální proměnné &#8212; Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0275affc"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'text/04_03';</script>
+    <script src="../_static/custom.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="24. Anonymní lambda funkce" href="04_04.html" />
+    <link rel="prev" title="22. Změna funkce v řešiči" href="04_02a.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_01.html">1. Co je Python a proč Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_02.html">2. Python a umělá inteligence (AI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_03.html">3. Kde spouštět a kde sdílet Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04.html">4. Pojmenovávání proměnných v jazyce Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_05.html">5. Růst bakterie <em>E. Coli</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01.html">6. Ukládání do proměnných</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01a.html">7. Změna hodnoty proměnné v programu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_01b.html">8. Kód od umělé inteligence (AI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02.html">9. Matematické operace s proměnnými</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02a.html">10. Trofické funkce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_03.html">11. Vektorizace matematických operací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_04.html">12. Formátované řetezce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_05.html">13. Seznamy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_05a.html">14. Logistická rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_06.html">15. Generátorová notace (zkrácené seznamy, list comprehension)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_06a.html">16. Úprava legendy v obrázku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_07.html">17. Iterace pomocí range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_08.html">18. Datový typ dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_00.html">19. Definice vlastních funkcí, práce s funkcemi.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_01.html">20. Definice a použití funkcí v Pythonu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02.html">21. Funkce s volitelnými parametry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02a.html">22. Změna funkce v řešiči</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Lokální a globální proměnné</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04.html">24. Anonymní lambda funkce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_04a.html">25. Řešení modelu s různými parametry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_01.html">26. Cyklus přes všechny prvky seznamu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_02.html">27. Cyklus s evidováním pořadí v seznamu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_03.html">28. Iterace přes několik seznamů současně</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_04.html">29. Podmínky v Pythonu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_01.html">30. Řezy v seznamech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_02.html">31. Řezy v sekvenci genových informací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_03.html">32. Translace genové informace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_01.html">33. Geometrická posloupnost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_02.html">34. Geometrická posloupnost se třemi počátečními stavy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_03.html">35. Geometrické posloupnosti se třemi rychlostmi růstu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_04.html">36. Leslieho model populace</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lokální a globální proměnné</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jak-funguji-lokalni-promenne">23.1. Jak fungují lokální proměnné</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jak-pristupovat-k-hodnotam-lokalnich-promennych">23.2. Jak přistupovat k hodnotám lokálních proměnných</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vraceni-nekolika-hodnot-jako-seznam">23.2.1. Vracení několika hodnot jako seznam</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vraceni-nekolika-hodnot-jako-slovnik">23.2.2. Vracení několika hodnot jako slovník</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol">23.3. Úkol</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lokalni-a-globalni-promenne">
+<h1><span class="section-number">23. </span>Lokální a globální proměnné<a class="headerlink" href="#lokalni-a-globalni-promenne" title="Link to this heading">#</a></h1>
+<p>Lokální proměnné jsou proměnné, které jsou definovány uvnitř funkce a jsou viditelné pouze v rámci této funkce. To znamená, že lokální proměnné nejsou přístupné mimo tuto funkci. Tím se zajišťuje izolace dat a zabraňuje se konfliktům názvů proměnných v různých částech programu.</p>
+<p>Opakem lokálních proměnných jsou globální proměnné. Ty je možno měnit i uvnitř nějaké funkce. Práce s těmito proměnnými je zpravidla považována za nedobrou programátorskou techniku a proto je lepší se globálním proměnným vyhnout.</p>
+<section id="jak-funguji-lokalni-promenne">
+<h2><span class="section-number">23.1. </span>Jak fungují lokální proměnné<a class="headerlink" href="#jak-funguji-lokalni-promenne" title="Link to this heading">#</a></h2>
+<p>Lokální proměnné mají několik klíčových vlastností:</p>
+<ol class="arabic simple">
+<li><p><strong>Omezená viditelnost:</strong> Jsou viditelné pouze uvnitř funkce, ve které byly definovány. Mimo tuto funkci nejsou přístupné.</p></li>
+<li><p><strong>Životnost:</strong> Existují pouze po dobu běhu funkce. Jakmile funkce skončí své vykonávání, lokální proměnné jsou odstraněny a ztrácejí svou hodnotu.</p></li>
+<li><p><strong>Unikátnost názvů:</strong> Název lokální proměnné má smysl pouze uvnitř této funkce. Jiné funkce však mohou mít svoji lokální proměnnou se stejným názvem</p></li>
+</ol>
+<p>Lokální proměnné jsou užitečné pro uchovávání dočasných dat a provádění operací v rámci jedné funkce, aniž by docházelo k ovlivněním proměnných v jiných částech programu.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pozdrav</span><span class="p">():</span>
+    <span class="n">jmeno</span> <span class="o">=</span> <span class="s2">&quot;Jano&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ahoj </span><span class="si">{</span><span class="n">jmeno</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+
+<span class="n">pozdrav</span><span class="p">()</span>  <span class="c1"># Volání funkce pozdrav</span>
+<span class="c1"># Výstup: Ahoj Jano!</span>
+</pre></div>
+</div>
+<p>V tomto příkladu je proměnná <code class="docutils literal notranslate"><span class="pre">jmeno</span></code> definována uvnitř funkce <code class="docutils literal notranslate"><span class="pre">pozdrav()</span></code> a je tak považována za lokální proměnnou této funkce. To znamená, že není přístupná mimo tuto funkci. Pokud byste se pokusili vytisknout hodnotu <code class="docutils literal notranslate"><span class="pre">jmeno</span></code> mimo funkci <code class="docutils literal notranslate"><span class="pre">pozdrav()</span></code>, dostanete chybu, protože proměnná <code class="docutils literal notranslate"><span class="pre">jmeno</span></code> je pro tuto část kódu neviditelná.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">jmeno</span><span class="p">)</span>  <span class="c1"># Toto vyvolá chybu: NameError: name &#39;jmeno&#39; is not defined</span>
+</pre></div>
+</div>
+</section>
+<section id="jak-pristupovat-k-hodnotam-lokalnich-promennych">
+<h2><span class="section-number">23.2. </span>Jak přistupovat k hodnotám lokálních proměnných<a class="headerlink" href="#jak-pristupovat-k-hodnotam-lokalnich-promennych" title="Link to this heading">#</a></h2>
+<p>Pokud chceme mít přístup k lokálním proměnným i po ukončení běhu funkce, stačí tyto proměnné předat v návratové hodnotě funkce. Tedy výstupem funkce bude nějaká struktura umožňující předat více informací. Například seznam nebo slovník.</p>
+<section id="vraceni-nekolika-hodnot-jako-seznam">
+<h3><span class="section-number">23.2.1. </span>Vracení několika hodnot jako seznam<a class="headerlink" href="#vraceni-nekolika-hodnot-jako-seznam" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vrat_promenne</span><span class="p">():</span>
+    <span class="n">jmeno</span> <span class="o">=</span> <span class="s2">&quot;Jan&quot;</span>
+    <span class="n">vek</span> <span class="o">=</span> <span class="mi">30</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">jmeno</span><span class="p">,</span> <span class="n">vek</span><span class="p">]</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">vrat_promenne</span><span class="p">()</span>  <span class="c1"># Funkce vrátí seznam s lokálními proměnnými</span>
+<span class="n">jmeno</span><span class="p">,</span> <span class="n">vek</span> <span class="o">=</span> <span class="n">data</span>  <span class="c1"># Rozbalení seznamu na lokální proměnné</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jméno: </span><span class="si">{</span><span class="n">jmeno</span><span class="si">}</span><span class="s2">, Věk: </span><span class="si">{</span><span class="n">vek</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Tímto způsobem jsou lokální proměnné <code class="docutils literal notranslate"><span class="pre">jmeno</span></code> a <code class="docutils literal notranslate"><span class="pre">vek</span></code> vráceny jako součást seznamu a následně jsou rozbaleny a uloženy do jiných lokálních proměnných mimo funkci.</p>
+<p>Podobným způsobem můžeme například získat informace o počtu řádků a sloupců dvourozměrného pole knihovny NumPy.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">7</span><span class="p">)[:</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># pole o ctyrech radcich a sedmi sloupcich</span>
+<span class="n">radky</span><span class="p">,</span> <span class="n">sloupce</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</section>
+<section id="vraceni-nekolika-hodnot-jako-slovnik">
+<h3><span class="section-number">23.2.2. </span>Vracení několika hodnot jako slovník<a class="headerlink" href="#vraceni-nekolika-hodnot-jako-slovnik" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vrat_promenne</span><span class="p">():</span>
+    <span class="n">jmeno</span> <span class="o">=</span> <span class="s2">&quot;Jan&quot;</span>
+    <span class="n">vek</span> <span class="o">=</span> <span class="mi">30</span>
+    <span class="n">vystup</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># Prazdny slovnik</span>
+    <span class="n">vystup</span><span class="p">[</span><span class="s1">&#39;jmeno&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jmeno</span>  <span class="c1"># Naplneni slovniku </span>
+    <span class="n">vystup</span><span class="p">[</span><span class="s1">&#39;vek&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vek</span>
+    <span class="k">return</span> <span class="n">vystup</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">vrat_promenne</span><span class="p">()</span>  <span class="c1"># Funkce vrátí slovník s lokálními proměnnými</span>
+<span class="n">jmeno</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;jmeno&quot;</span><span class="p">]</span>  <span class="c1"># Přistupování k hodnotám pomocí klíčů slovníku</span>
+<span class="n">vek</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;vek&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jméno: </span><span class="si">{</span><span class="n">jmeno</span><span class="si">}</span><span class="s2">, Věk: </span><span class="si">{</span><span class="n">vek</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Tady jsou lokální proměnné vráceny jako slovník, což umožňuje snadné přistupování k nim pomocí klíčů.</p>
+<p>Tímto způsobem vrací informace například funkce <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> urená pro řešení matematických modelů založených na diferenciálních rovnicích.</p>
+</section>
+</section>
+<section id="ukol">
+<h2><span class="section-number">23.3. </span>Úkol<a class="headerlink" href="#ukol" title="Link to this heading">#</a></h2>
+<p>Následujcí funkce vrací funkční hodnoty logistické funkce.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">logisticky_rust</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Funkce vrací funkční hodnotu funkce logistického růstu </span>
+<span class="sd">    y = r*x*(1-x/K)</span>
+<span class="sd">    v bodě x. Volitelnými parametry jsou parametry r a K.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">vystup</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vystup</span>
+</pre></div>
+</div>
+<p>Modifikujte funkci tak, aby kromě hodnoty pro rychlost růstu <div class="math notranslate nohighlight">
+\[rx\left(1-\frac xK\right)\]</div>
+ vracela i hodnotu <div class="math notranslate nohighlight">
+\[r\left(1-\frac xK\right)\]</div>
+ pro specifickou rychlost růstu. Výstupem bude slovník, který bude mít klíče <code class="docutils literal notranslate"><span class="pre">rychlost_rustu</span></code>  a <code class="docutils literal notranslate"><span class="pre">specificka_rychlost_rustu</span></code>, obsahující vypočtené hodnoty.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_02a.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">předchozí</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>Změna funkce v řešiči</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_04.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Anonymní lambda funkce</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jak-funguji-lokalni-promenne">23.1. Jak fungují lokální proměnné</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jak-pristupovat-k-hodnotam-lokalnich-promennych">23.2. Jak přistupovat k hodnotám lokálních proměnných</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vraceni-nekolika-hodnot-jako-seznam">23.2.1. Vracení několika hodnot jako seznam</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vraceni-nekolika-hodnot-jako-slovnik">23.2.2. Vracení několika hodnot jako slovník</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol">23.3. Úkol</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Podle Robert Mařík, Tomáš Kudláček
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
