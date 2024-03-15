@@ -32,10 +32,14 @@ parts:
     - file: text/04_03.md
     - file: text/04_04.md
     - file: text/04_04a.md
-    - file: text/07_01.md
-    - file: text/07_02.md
-    - file: text/07_03.md
     - file: text/05_01.md
     - file: text/05_02.md
     - file: text/05_03.md
     - file: text/05_04.md
+    - file: text/07_01.md
+    - file: text/07_02.md
+    - file: text/07_03.md
+    - file: text/09_01.md
+    - file: text/09_02.md
+    - file: text/09_03.md
+    - file: text/09_04.md
